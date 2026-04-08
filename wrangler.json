@@ -1,0 +1,17 @@
+{
+  "name": "guna-merey",
+  "compatibility_date": "2026-02-26",
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "gunamerey.mynsites.com",
+      "custom_domain": true
+    }
+  ],
+  "assets": {
+    "directory": "./public"
+  },
+  "build": {
+    "command": "rm -rf public && mkdir -p public && cp index.html styles.css script.js tailwind.generated.css public/ && mkdir -p public/assets && cp -R assets/. public/assets/"
+  }
+}
