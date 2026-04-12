@@ -31,23 +31,17 @@ const QUALIFIER_DEFAULTS = {
 };
 
 const GALLERY_IMAGES = [
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.56 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.56 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.57 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.57 PM (2).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.57 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.58 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.58 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.59 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.59 PM (2).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.59 PM (3).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.59 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.00 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.00 PM (2).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.00 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.01 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.01 PM (2).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.01 PM.jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 10.00.14 AM.jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 10.03.19 AM (1).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 10.03.19 AM.jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.45 AM (1).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.45 AM.jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM (1).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM (2).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM (3).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM (4).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM.jpeg",
+  "assets/gallery/b416053b-8590-4034-b25b-4d2985cfdba6.jpeg",
 ];
 
 const CERTIFICATE_IMAGES = [
@@ -137,7 +131,7 @@ function parsePositiveNumber(value) {
 }
 
 function buildModelMessage(modelName) {
-  return `Hi Guna Merey, saya berminat dengan Honda ${modelName}. Boleh bantu semak harga terkini, promosi semasa, dan kelayakan loan saya?`;
+  return `Hi Honda Merey, saya berminat dengan Honda ${modelName}. Boleh bantu semak harga terkini, promosi semasa, dan kelayakan loan saya?`;
 }
 
 function renderModelCards() {
@@ -639,7 +633,7 @@ function setupLoanCalculator() {
     }
 
     const messageLines = [
-      "Hi Guna Merey, saya nak semak anggaran loan Honda ini:",
+      "Hi Honda Merey, saya nak semak anggaran loan Honda ini:",
       `Harga Kereta: ${formatCurrency(latestEstimate.price)}`,
       `Deposit: ${formatCurrency(latestEstimate.downPayment)}`,
       `Kadar Faedah: ${latestEstimate.rate.toFixed(2)}% setahun`,
@@ -695,7 +689,7 @@ function setupQualifierForm() {
     const timeline = getValue(qTimeline, QUALIFIER_DEFAULTS.timeline);
 
     const messageLines = [
-      "Hi Guna Merey, saya nak semak kelayakan dan offer Honda.",
+      "Hi Honda Merey, saya nak semak kelayakan dan offer Honda.",
       "",
       "Maklumat ringkas saya:",
       `Model sasaran: ${model}`,

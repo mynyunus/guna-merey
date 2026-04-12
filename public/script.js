@@ -31,23 +31,23 @@ const QUALIFIER_DEFAULTS = {
 };
 
 const GALLERY_IMAGES = [
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.56 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.56 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.57 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.57 PM (2).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.57 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.58 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.58 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.59 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.59 PM (2).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.59 PM (3).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.31.59 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.00 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.00 PM (2).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.00 PM.jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.01 PM (1).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.01 PM (2).jpeg",
-  "assets/gallery/WhatsApp Image 2026-04-03 at 1.32.01 PM.jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 10.00.14 AM.jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 10.03.19 AM (1).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 10.03.19 AM.jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.45 AM (1).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.45 AM.jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM (1).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM (2).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM (3).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM (4).jpeg",
+  "assets/gallery/WhatsApp Image 2026-04-12 at 9.59.46 AM.jpeg",
+  "assets/gallery/b416053b-8590-4034-b25b-4d2985cfdba6.jpeg",
+];
+
+const CERTIFICATE_IMAGES = [
+  "assets/cert/WhatsApp Image 2026-04-09 at 3.41.58 PM (1).jpeg",
+  "assets/cert/WhatsApp Image 2026-04-09 at 3.41.58 PM.jpeg",
+  "assets/cert/WhatsApp Image 2026-04-09 at 3.41.59 PM.jpeg",
 ];
 
 const models = [
@@ -131,7 +131,7 @@ function parsePositiveNumber(value) {
 }
 
 function buildModelMessage(modelName) {
-  return `Hi Guna Merey, saya berminat dengan Honda ${modelName}. Boleh bantu semak harga terkini, promosi semasa, dan kelayakan loan saya?`;
+  return `Hi Honda Merey, saya berminat dengan Honda ${modelName}. Boleh bantu semak harga terkini, promosi semasa, dan kelayakan loan saya?`;
 }
 
 function renderModelCards() {
@@ -326,33 +326,46 @@ function setupRevealAnimation() {
   revealElements.forEach((el) => observer.observe(el));
 }
 
-function setupGalleryCarousel() {
-  const track = document.getElementById("galleryTrack");
-  const prevButton = document.getElementById("galleryPrev");
-  const nextButton = document.getElementById("galleryNext");
-  const counter = document.getElementById("galleryCounter");
+function setupImageCarousel(options) {
+  const {
+    images,
+    trackId,
+    prevButtonId,
+    nextButtonId,
+    counterId,
+    emptyMessage,
+    altPrefix,
+  } = options;
+
+  const track = document.getElementById(trackId);
+  const prevButton = document.getElementById(prevButtonId);
+  const nextButton = document.getElementById(nextButtonId);
+  const counter = document.getElementById(counterId);
 
   if (!track || !prevButton || !nextButton) {
     return;
   }
 
-  if (!GALLERY_IMAGES.length) {
-    track.innerHTML = '<p class="p-6 text-center text-sm text-slate-500">Galeri akan dikemas kini tidak lama lagi.</p>';
+  if (!images.length) {
+    track.innerHTML = `<p class="p-6 text-center text-sm text-slate-500">${emptyMessage}</p>`;
     prevButton.hidden = true;
     nextButton.hidden = true;
+    if (counter) {
+      counter.hidden = true;
+    }
     return;
   }
 
   const imageFragment = document.createDocumentFragment();
-  const total = GALLERY_IMAGES.length;
+  const total = images.length;
 
-  GALLERY_IMAGES.forEach((src, index) => {
+  images.forEach((src, index) => {
     const slide = document.createElement("figure");
     slide.className = "gallery-slide";
 
     const image = document.createElement("img");
     image.src = src;
-    image.alt = `Galeri pelanggan Honda ${index + 1}`;
+    image.alt = `${altPrefix} ${index + 1}`;
     image.loading = index === 0 ? "eager" : "lazy";
     image.decoding = "async";
     image.className = "gallery-image";
@@ -446,7 +459,7 @@ function setupGalleryCarousel() {
   prevButton.addEventListener("click", () => goTo(currentIndex - 1));
   nextButton.addEventListener("click", () => goTo(currentIndex + 1));
 
-  if (viewport) {
+  if (viewport instanceof HTMLElement) {
     const handleSwipeEnd = (endX) => {
       if (startX === null) {
         return;
@@ -507,6 +520,30 @@ function setupGalleryCarousel() {
 
   window.addEventListener("resize", syncViewportSize, { passive: true });
   update();
+}
+
+function setupGalleryCarousel() {
+  setupImageCarousel({
+    images: GALLERY_IMAGES,
+    trackId: "galleryTrack",
+    prevButtonId: "galleryPrev",
+    nextButtonId: "galleryNext",
+    counterId: "galleryCounter",
+    emptyMessage: "Galeri akan dikemas kini tidak lama lagi.",
+    altPrefix: "Galeri pelanggan Honda",
+  });
+}
+
+function setupCertificateCarousel() {
+  setupImageCarousel({
+    images: CERTIFICATE_IMAGES,
+    trackId: "certTrack",
+    prevButtonId: "certPrev",
+    nextButtonId: "certNext",
+    counterId: "certCounter",
+    emptyMessage: "Sijil akan dikemas kini tidak lama lagi.",
+    altPrefix: "Sijil pengiktirafan Honda",
+  });
 }
 
 function setupBackToTop() {
@@ -596,7 +633,7 @@ function setupLoanCalculator() {
     }
 
     const messageLines = [
-      "Hi Guna Merey, saya nak semak anggaran loan Honda ini:",
+      "Hi Honda Merey, saya nak semak anggaran loan Honda ini:",
       `Harga Kereta: ${formatCurrency(latestEstimate.price)}`,
       `Deposit: ${formatCurrency(latestEstimate.downPayment)}`,
       `Kadar Faedah: ${latestEstimate.rate.toFixed(2)}% setahun`,
@@ -652,7 +689,7 @@ function setupQualifierForm() {
     const timeline = getValue(qTimeline, QUALIFIER_DEFAULTS.timeline);
 
     const messageLines = [
-      "Hi Guna Merey, saya nak semak kelayakan dan offer Honda.",
+      "Hi Honda Merey, saya nak semak kelayakan dan offer Honda.",
       "",
       "Maklumat ringkas saya:",
       `Model sasaran: ${model}`,
@@ -674,6 +711,7 @@ function setupQualifierForm() {
 function initializePage() {
   renderModelCards();
   setupGalleryCarousel();
+  setupCertificateCarousel();
   setupProofStrip();
   setupQualifierForm();
   setupMobileMenu();

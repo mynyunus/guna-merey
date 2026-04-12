@@ -207,6 +207,78 @@ details summary::-webkit-details-marker {
   outline-offset: 2px;
 }
 
+.cta-highlight-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+.cta-business-card-wrap {
+  width: 100%;
+  max-width: 340px;
+  margin-inline: auto;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 1rem;
+  background: rgba(15, 23, 42, 0.42);
+  padding: 0.55rem;
+  box-shadow: 0 18px 34px rgba(2, 6, 23, 0.38);
+}
+
+.cta-business-card-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  background: #ffffff;
+}
+
+.cta-highlight-content {
+  max-width: 42rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.cta-highlight-subtitle {
+  color: #e2e8f0;
+  text-shadow: 0 1px 1px rgba(2, 6, 23, 0.55);
+}
+
+.cta-highlight-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .cta-highlight-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .cta-highlight-grid {
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    gap: 2.25rem;
+  }
+
+  .cta-business-card-wrap {
+    margin-inline: 0;
+  }
+
+  .cta-highlight-content {
+    margin-inline: 0;
+    text-align: left;
+  }
+
+  .cta-highlight-actions {
+    justify-content: flex-start;
+  }
+}
+
 .floating-wa {
   position: fixed;
   right: 1rem;
