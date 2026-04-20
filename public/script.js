@@ -53,8 +53,10 @@ const CERTIFICATE_IMAGES = [
 const models = [
   {
     name: "City",
-    image: "assets/cars/hondacity.png",
+    image: "assets/cars/hondacity.webp",
     brochure: "assets/brochures/hondacity.pdf",
+    width: 1200,
+    height: 665,
     price: "From RM 84,900.00",
     badge: "Top Seller",
     badgeStyle: "bg-primary/10 text-primary",
@@ -62,8 +64,10 @@ const models = [
   },
   {
     name: "City Hatchback",
-    image: "assets/cars/hondacityhatchback.png",
+    image: "assets/cars/hondacityhatchback.webp",
     brochure: "assets/brochures/hondacityhatchback.pdf",
+    width: 1200,
+    height: 665,
     price: "From RM 85,900.00",
     badge: "Sporty",
     badgeStyle: "bg-slate-100 text-slate-600",
@@ -71,8 +75,10 @@ const models = [
   },
   {
     name: "Civic",
-    image: "assets/cars/hondacivic.png",
+    image: "assets/cars/hondacivic.webp",
     brochure: "assets/brochures/hondacivic.pdf",
+    width: 1200,
+    height: 590,
     price: "From RM 133,900.00",
     badge: "Premium Sedan",
     badgeStyle: "bg-slate-100 text-slate-600",
@@ -80,8 +86,10 @@ const models = [
   },
   {
     name: "CR-V",
-    image: "assets/cars/hondacrv.png",
+    image: "assets/cars/hondacrv.webp",
     brochure: "assets/brochures/hondacrv.pdf",
+    width: 1200,
+    height: 691,
     price: "From RM 159,900.00",
     badge: "SUV Family",
     badgeStyle: "bg-slate-100 text-slate-600",
@@ -89,8 +97,10 @@ const models = [
   },
   {
     name: "HR-V",
-    image: "assets/cars/hondahrv.png",
+    image: "assets/cars/hondahrv.webp",
     brochure: "assets/brochures/hondahrv.pdf",
+    width: 950,
+    height: 633,
     price: "From RM 115,900.00",
     badge: "Popular SUV",
     badgeStyle: "bg-slate-100 text-slate-600",
@@ -98,8 +108,10 @@ const models = [
   },
   {
     name: "WR-V",
-    image: "assets/cars/hondawrv.png",
+    image: "assets/cars/hondawrv.webp",
     brochure: "assets/brochures/hondawrv.pdf",
+    width: 467,
+    height: 328,
     price: "From RM 89,900.00",
     badge: "Value Pick",
     badgeStyle: "bg-slate-100 text-slate-600",
@@ -131,7 +143,7 @@ function parsePositiveNumber(value) {
 }
 
 function buildModelMessage(modelName) {
-  return `Hi Honda Merey, saya berminat dengan Honda ${modelName}. Boleh bantu semak harga terkini, promosi semasa, dan kelayakan loan saya?`;
+  return `Hi Honda Merry, saya berminat dengan Honda ${modelName}. Boleh bantu semak harga terkini, promosi semasa, dan kelayakan loan saya?`;
 }
 
 function renderModelCards() {
@@ -154,6 +166,10 @@ function renderModelCards() {
     image.src = model.image;
     image.alt = `Paparan model Honda ${model.name}`;
     image.loading = "lazy";
+    image.decoding = "async";
+    image.fetchPriority = "low";
+    image.width = model.width;
+    image.height = model.height;
     image.className = "h-full w-full object-cover transition-transform duration-500 group-hover:scale-110";
 
     const fallback = document.createElement("div");
@@ -633,7 +649,7 @@ function setupLoanCalculator() {
     }
 
     const messageLines = [
-      "Hi Honda Merey, saya nak semak anggaran loan Honda ini:",
+      "Hi Honda Merry, saya nak semak anggaran loan Honda ini:",
       `Harga Kereta: ${formatCurrency(latestEstimate.price)}`,
       `Deposit: ${formatCurrency(latestEstimate.downPayment)}`,
       `Kadar Faedah: ${latestEstimate.rate.toFixed(2)}% setahun`,
@@ -689,7 +705,7 @@ function setupQualifierForm() {
     const timeline = getValue(qTimeline, QUALIFIER_DEFAULTS.timeline);
 
     const messageLines = [
-      "Hi Honda Merey, saya nak semak kelayakan dan offer Honda.",
+      "Hi Honda Merry, saya nak semak kelayakan dan offer Honda.",
       "",
       "Maklumat ringkas saya:",
       `Model sasaran: ${model}`,

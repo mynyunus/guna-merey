@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Allow: /assets/brochures/
+Disallow: /cdn-cgi/
+
+Sitemap: https://hondamerry.mynsites.com/sitemap.xml

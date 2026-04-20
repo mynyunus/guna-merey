@@ -43,12 +43,30 @@ Because this is a pure static site, Cloudflare will serve files directly from th
 
 3. Update social URLs in `index.html` when exact links are available (currently marked as Coming soon).
 
-4. Optional SEO polish before go-live:
-   - Update `og:image` with a real social share image.
-   - Update canonical URL if using a custom domain.
+4. SEO assets already included in this repo:
+   - `robots.txt` for crawl directives and sitemap discovery.
+   - `sitemap.xml` for homepage + brochure PDF URLs.
+   - JSON-LD schema (`WebSite`, `Person`, `Organization`, `FAQPage`, `ItemList`) in `index.html`.
 
 ## Notes
 
 - Loan calculator uses a flat-rate hire purchase approximation and is labeled as an estimate.
 - All primary conversion actions use the configured WhatsApp deep link.
 - Footer includes icon attribution: **Icons by Flaticon**.
+
+## SEO Off-Page Checklist
+
+1. Google Search Console
+   - Verify domain property: `hondamerry.mynsites.com`
+   - Submit `https://hondamerry.mynsites.com/sitemap.xml`
+   - Run URL Inspection and request indexing for homepage
+2. Google Business Profile
+   - Use consistent primary name: `Honda Merry`
+   - Set service area: Selangor + Kuala Lumpur
+   - Match phone and email with website contact details
+3. Local citations
+   - Publish 8-12 listings with consistent brand and contact data
+4. Keyword tracking (weekly)
+   - `honda merry`
+   - `honda selangor`
+   - `sales advisor honda selangor`
